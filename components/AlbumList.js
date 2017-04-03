@@ -1,6 +1,7 @@
 import React, { Component } from 'react'; 
-import { View, Text } from 'react-native';
+import { ScrollView } from 'react-native';
 import axios from 'axios';
+import AlbumDetails from './AlbumDetails';
 
 export default class AlbumList extends Component {
     state = {
@@ -16,11 +17,17 @@ export default class AlbumList extends Component {
         );
     }
 
+    renderAlbums() {
+        return this.state.albums.map(album => 
+            <AlbumDetails key={album.title} album={album} />
+        );
+    }
+
     render() {
         return (
-            <View>
-                <Text>List</Text >
-            </View> 
+            <ScrollView>
+                {this.renderAlbums()}
+            </ScrollView> 
         ); 
     }
 }
